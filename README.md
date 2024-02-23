@@ -8,7 +8,7 @@ This starter kit is composed of:
 - [Next.js](https://nextjs.org)
 - [Lenis](https://github.com/studio-freight/lenis)
 - [Theatre.js](https://www.theatrejs.com/)
-- [GSAP](https://greensock.com/gsap/)
+- [GSAP](https://radiantsock.com/gsap/)
 - [Hamo](https://github.com/studio-freight/hamo)
 - [Compono](https://github.com/studio-freight/compono)
 

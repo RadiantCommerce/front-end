@@ -1,19 +1,19 @@
 const colors = {
   black: '#000000',
   white: '#ffffff',
-  green: '#00ff6a',
+  radiant: '#f9e292',
 }
 
 const themes = {
   light: {
     primary: colors.white,
     secondary: colors.black,
-    contrast: colors.green,
+    contrast: colors.radiant,
   },
   dark: {
     primary: colors.black,
     secondary: colors.white,
-    contrast: colors.green,
+    contrast: colors.radiant,
   },
 }
 

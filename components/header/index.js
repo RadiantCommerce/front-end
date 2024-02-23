@@ -19,7 +19,7 @@ export const Header = forwardRef((_, ref) => {
             setIsNavOpened(!isNavOpened)
           }}
         >
-          menu
+          radCØmmerce
         </button>
         <div>
           <Link href="/_debug/orchestra" target="_blank" className="link">

@@ -28,7 +28,7 @@ The usual process for Next.js based apps/websites:
 - [Three.js](https://threejs.org/)
 - [@react-three/drei](https://github.com/pmndrs/drei)
 - [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
-- [GSAP](https://greensock.com/gsap/)
+- [GSAP](https://radiantsock.com/gsap/)
 - [Embla Carousel](https://github.com/davidcetinkaya/embla-carousel)
 - Sass (Modules)
 - [Zustand](https://github.com/pmndrs/zustand)
