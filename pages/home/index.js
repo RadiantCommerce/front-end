@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <Layout theme="dark" className={s.home}>
       <section className={s.content}>
-        <h1 className={s.title}></h1>
+        <h1 className={s.title}> Dev things</h1>
       </section>
     </Layout>
   )

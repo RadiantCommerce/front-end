@@ -13,6 +13,7 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import 'styles/global.scss'
 
+
 const Studio = dynamic(
   () => import('libs/theatre/studio').then(({ Studio }) => Studio),
   { ssr: false },

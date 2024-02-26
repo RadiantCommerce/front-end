@@ -14,6 +14,8 @@
 
   .head {
     display: flex;
+    border-radius: 3px;
+  border-color: var(--theme-secondary);
     justify-content: space-between;
     position: relative;
     z-index: 2;
