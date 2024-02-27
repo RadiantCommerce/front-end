@@ -1,17 +1,19 @@
 import { OrbitControls } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { Lenis } from '@studio-freight/react-lenis'
 import cn from 'clsx'
 import AsciiRenderer from 'components/ascii/asciiRender'
 import { useStore } from 'libs/store'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
+import { Model } from './model'
 import s from './navigation.module.scss'
 
 export function Navigation() {
   const [isNavOpened, setIsNavOpened] = useStore(
     ({ isNavOpened, setIsNavOpened }) => [isNavOpened, setIsNavOpened],
   )
+  const orbitControlsRef = useRef()
 
   const router = useRouter()
 
@@ -27,42 +29,51 @@ export function Navigation() {
     }
   }, [])
 
-  function Torusknot(props) {
-    const ref = useRef()
-    useFrame((state, delta) => {
-      if (ref.current) {
-        ref.current.rotation.x += delta / 2
-        ref.current.rotation.y += delta / 2
+  function ModelAndControls() {
+    const delta = 0.01 // Adjust as needed
+    const modelRef = useRef()
+
+    useEffect(() => {
+      const handleTick = () => {
+        if (modelRef.current) {
+          modelRef.current.rotation.x += delta
+          modelRef.current.rotation.y += delta
+          modelRef.current.rotation.z += delta
+        }
       }
-    })
+
+      const animationFrameId = requestAnimationFrame(handleTick)
+
+      return () => cancelAnimationFrame(animationFrameId)
+    }, [delta])
 
     return (
-      <mesh {...props} ref={ref}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="red" />
-      </mesh>
+      <>
+        <AsciiRenderer characters=" _.,-=+:;rad!" />
+        <Model ref={modelRef}>
+          <meshBasicMaterial attach="material" color="white" />
+        </Model>
+        <OrbitControls
+          ref={orbitControlsRef}
+          autoRotate
+          autoRotateSpeed={15}
+          enableZoom={false}
+        />
+      </>
     )
   }
 
   return (
     <Lenis className={cn(s.navigation, !isNavOpened && s.closed)}>
-      <div className={s.content}>
-        <Canvas>
-          <color attach="red" args={['red']} />
-          <spotLight position={[0, 0, 5]} angle={0.15} penumbra={1} />
-          <pointLight position={[-1, -1, -1]} />
-          <Torusknot size={[1, 1, 1]} />
-          <OrbitControls enableRotate={false} enableZoom={false} />
-          <AsciiRenderer characters=" _.,-=+:;rad!?0123456789#@" />
+      <section className={s.content}>
+        <Canvas camera={{ position: [0, 0, 100], fov: 15 }}>
+          <ambientLight />
+          <directionalLight position={[5, 8, 5]} intensity={1} />
+          <pointLight position={[-3, -3, 2]} />
+          <fog attach="fog" args={['#000', 2, 10]} />
+          <ModelAndControls />
         </Canvas>
-        <div className={s.image}></div>
-        <h2 href="/">Welcome Nerd</h2>
-        <main className={s.main}>
-          <h2 href="/">Welcome Nerd</h2>
-          <div></div>
-          <div></div>
-        </main>
-      </div>
+      </section>
     </Lenis>
   )
 }
