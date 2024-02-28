@@ -11,8 +11,8 @@ import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Color, ShaderMaterial } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js' // Import GLTFLoader for loading GLB models
+import '../../components/homepageutil/util.js'
 import s from './home.module.scss'
-import './util.js'
 
 export default function Home() {
   return (
